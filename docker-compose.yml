@@ -1,0 +1,51 @@
+version: '2'
+services:
+  prometheus:
+    build:
+      context: ./prometheus
+      dockerfile: dockerfile
+    container_name: "prometheus"
+    hostname: "prometheus"
+    ports:
+      - "9090:9090"
+    links:
+      - app
+      - app2
+  app:
+    build:
+      context: .
+    expose:
+      - "8080"
+    links:
+      - redis
+    environment:
+      SPRING_APPLICATION_NAME: my-tiny-url
+
+  app2:
+    build:
+      context: .
+    expose:
+      - "8080"
+    links:
+      - redis
+    environment:
+      SPRING_APPLICATION_NAME: my-tiny-url
+
+  nginx:
+    container_name: proxy-nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+      - app2
+  redis:
+    image: "bitnami/redis:latest"
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
