@@ -13,7 +13,7 @@
   http://localhost:8080/api/v1/shortUrl \
   -H 'content-type: application/json' \
   -d '{
-    "longUrl": "https://group.mercedes-benz.com/careers/professionals/direct-entry/",
+    "longUrl": "https://www.paycomonline.net/v4/ats/web.php/session/index/login",
     "alias": "https://test/"
   }'
   ```
@@ -35,7 +35,7 @@
   * The response will be
     ```
     {
-    "https://group.mercedes-benz.com/careers/professionals/direct-entry/"
+    "https://www.paycomonline.net/v4/ats/web.php/session/index/login"
     }
      ```
 * The redis itself can be run as in distributed HA mode.
@@ -90,7 +90,6 @@
 - ShortUrlService - Holds the business logic to shorten the url. (From SOLID - SRS)
 - RedisUrlRepository - I used redis as a key pair dristributed fast nosql storage. only deals with data storage and retrival.(From SOLID - SRS)
 - UrlDetails -Actual bussiness object that holds the data.
-- More test can be written.
 - ErrorHandlingControllerAdvice - handles all the error flows.
 - ErrorResponse - gives the business object for errors.
 - UrlResourceTestIT - Integration test for testing end to end functionality.
