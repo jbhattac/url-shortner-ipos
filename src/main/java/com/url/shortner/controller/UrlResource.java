@@ -29,16 +29,10 @@ public class UrlResource {
     public ResponseEntity<?> shortenUrl(@RequestBody @Valid ShortUrlRequest shortUrlRequest) {
         log.info("Received request {}", shortUrlRequest);
         String shortUrl = shortUrlService.shortenUrl(shortUrlRequest);
-        return new ResponseEntity<ShortUrlResponse>(ShortUrlResponse.builder().shortUrl(shortUrl).build(),
+        return new ResponseEntity<>(ShortUrlResponse.builder().shortUrl(shortUrl).build(),
                 HttpStatus.CREATED);
     }
 
-    @GetMapping("/{key}")
-    public ResponseEntity<?> getLongUrl(@PathVariable String key) {
-        log.info("Received key {}", key);
-       // String url = shortUrlService.getLongUrlByKey(key);
-        return ResponseEntity.ok(key);
-    }
 
     @RequestMapping("/url/**")
     public ResponseEntity<?> findAddress(HttpServletRequest request) {
