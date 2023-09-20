@@ -51,7 +51,7 @@
 ``` 
   http://localhost:8080/actuator/prometheus
   
-  count(http_server_requests_seconds_count{uri="/api/v1/shortUrl/url/**"})
+  (http_server_requests_seconds_count{uri="/api/v1/shortUrl/url/**"})
 ``` 
 
 * Also we have included a docker image of promethus configured with the actuator api.
